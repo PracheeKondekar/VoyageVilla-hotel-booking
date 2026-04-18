@@ -1,0 +1,212 @@
+body {
+    font-family: "Plus Jakarta Sans", sans-serif;
+    background-color: #f5f5f5;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+.container{
+    flex: 1;
+}
+/*Navbar*/
+.navbar {
+    height: 5rem;
+     background-color: white !important;
+}
+
+.fa-compass{
+    color: #fe424d;
+    font-size: 2rem;
+}
+
+.navbar-link{
+   color: #222222 !important;
+  
+}
+
+/* footer*/
+.f-info-links a{
+ text-decoration: none;
+ color: #222222;
+     margin-right: 1rem;
+}
+.f-info-links a:hover{
+ text-decoration: underline;
+
+}
+
+.f-info-socials,.f-info-links,.f-info-brand{
+    width: 100%;
+    font-size: 1.2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.f-info-socials i{
+    margin-right: 1rem;
+}
+.f-info{
+    display: flex;
+    height: 8rem;
+    background-color: #ebebeb;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: space-between;
+    text-align: center;
+}
+/*cards*/
+.card{
+    border: none !important;
+    margin-bottom: 2rem;
+
+}
+.card-img-top{
+    border-radius: 1rem !important;
+    width: 100% !important;
+    object-fit: cover !important;
+}
+.card-body{
+   padding: 0 !important;
+}
+.card-text{
+    font-size: 1.1rem;
+    font-weight: 400;
+    color: #222222;
+    text-align: center;
+    margin-top: 0.5rem;
+}
+.listing-link{
+    text-decoration: none !important;
+}
+.card-img-overlay{
+   opacity: 0;
+}
+.card-img-overlay:hover{
+   opacity: 0.2;
+   background-color: white;
+}
+/*new*/
+.add-btn{
+    background-color: #fe424d !important;
+    border: none !important;
+    color: #ebebeb;
+}
+/*edit*/
+.edit-btn{
+       background-color: #fe424d !important;
+    border: none !important;
+    color: #ebebeb;
+    text-decoration: none;
+}
+/*show*/
+.show-img {
+  height: 30vh;
+
+
+}
+/* Edit Form Styling */
+form .form-control {
+    border-radius: 0.5rem;
+}
+
+form label {
+    font-weight: 500;
+}
+
+.edit-btn {
+    background-color: #fe424d !important;
+    border: none !important;
+    color: white;
+    border-radius: 0.5rem;
+}
+
+.card {
+    border-radius: 1rem ;
+}
+.show-img {
+  height: 300px;
+  object-fit: cover;
+  border-radius: 1rem ;
+}
+.card {
+  border-radius: 12px;
+}
+
+.card:hover {
+  transform: scale(1.02);
+  transition: 0.2s ease;
+}
+.star-rating {
+  direction: rtl;
+  display: inline-flex;
+}
+
+.star-rating input {
+  display: none;
+}
+
+.star-rating label {
+  font-size: 1.8rem;
+  color: #ccc;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.star-rating input:checked ~ label {
+  color: gold;
+}
+
+.star-rating label:hover,
+.star-rating label:hover ~ label {
+  color: gold;
+}
+.review-card {
+  border: none;
+  border-left: 6px solid #ffc107;   /* ⭐ strong yellow accent */
+  border-radius: 12px;
+  background: #fffdf5;              /* warm light background */
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  transition: all 0.3s ease;
+}
+
+/* Hover effect (NOW noticeable) */
+.review-card:hover {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 0 12px 30px rgba(0,0,0,0.15);
+  border-left: 6px solid #ff9800;
+}
+
+/* Comment text */
+.review-card .card-text {
+  font-size: 0.95rem;
+  color: #444;
+}
+
+/* Title */
+.review-card .card-title {
+  font-weight: 600;
+}
+.airbnb-btn {
+  background-color: #FF385C;  /* Airbnb pink */
+  color: #ffffff;             /* white text */
+  border: none;
+  padding: 10px 20px;
+  font-weight: 600;
+  border-radius: 10px;
+  transition: all 0.25s ease;
+}
+
+/* Hover */
+.airbnb-btn:hover {
+  background-color: #e31c5f;  /* darker pink */
+  color: #ffffff;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(255, 56, 92, 0.3);
+}
+
+/* Click */
+.airbnb-btn:active {
+  transform: scale(0.97);
+}

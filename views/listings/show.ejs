@@ -1,0 +1,139 @@
+     <% layout("/layouts/boilerplate.ejs") %>
+
+<!-- ✅ Bootstrap Icons -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+
+<div class="container mt-4">
+  <div class="row justify-content-center">
+    <div class="col-md-8 col-lg-6">
+
+      <!-- Card -->
+      <div class="card shadow-sm p-3">
+
+        <!-- Title -->
+        <h3 class="mb-2"><%= listing.title %></h3>
+
+        <!-- ⭐ Average Rating -->
+        <h5 class="text-warning mb-3">
+          <% 
+            let avg = listing.reviews.length 
+              ? Math.round(listing.reviews.reduce((a,b)=>a+b.rating,0)/listing.reviews.length)
+              : 0;
+          %>
+
+          <% for(let i=1; i<=5; i++) { %>
+            <% if(i <= avg) { %>
+              <i class="bi bi-star-fill"></i>
+            <% } else { %>
+              <i class="bi bi-star"></i>
+            <% } %>
+          <% } %>
+        </h5>
+
+        <!-- Image -->
+        <img src="<%= listing.image?.url || '' %>" class="card-img-top show-img mb-3" alt="listing image">
+
+        <!-- Details -->
+        <div class="card-body p-0">
+          <p class="mb-2"><%= listing.description %></p>
+          <p class="mb-2">&#8377; <%= listing.price.toLocaleString("en-IN") %> / per night</p>
+          <p class="mb-1"><%= listing.location %></p>
+          <p class="mb-1"><%= listing.country %></p>
+        </div>
+
+        <!-- Buttons -->
+        <div class="d-flex gap-3 mt-3">
+          <a href="/listings/<%= listing._id %>/edit" class="btn btn-warning">Edit</a>
+
+          <form method="POST" action="/listings/<%= listing._id %>?_method=DELETE">
+            <button class="btn btn-dark">Delete</button>
+          </form>
+        </div>
+
+      </div>
+
+      <hr>
+
+      <!-- Review Form -->
+      <div class="mt-4">
+        <h4 class="mb-3">Leave a Comment</h4>
+
+        <form action="/listings/<%= listing._id %>/review" method="POST" novalidate class="needs-validation">
+
+          <!-- ⭐ Star Rating Input -->
+          <div class="mb-3">
+            <label class="form-label">Rating</label>
+
+            <div class="star-rating">
+              <% for(let i = 5; i >= 1; i--) { %>
+                <input type="radio" name="review[rating]" value="<%= i %>" id="star<%= i %>" required>
+                <label for="star<%= i %>">★</label>
+              <% } %>
+            </div>
+          </div>
+
+          <!-- Comment -->
+          <div class="mb-3 mt-3">
+            <label class="form-label" for="comment">Comments</label>
+            <textarea id="comment" class="form-control" name="review[comment]" rows="3" required></textarea>
+            <div class="invalid-feedback">Please submit some comments for review</div>
+          </div>
+                <button class="btn airbnb-btn">Submit</button>
+        </form>
+
+        <hr />
+
+        <!-- Reviews -->
+        <h4 class="mb-3"><b>Reviews</b></h4>
+
+        <div class="row">
+          <% for(let review of listing.reviews) { %>
+
+            <div class="col-md-6 mb-4">
+              <div class="card review-card h-100 p-2">
+                
+                <div class="card-body position-relative">
+                  <form 
+  method="POST" 
+  action="/listings/<%= listing._id %>/review/<%= review._id %>?_method=DELETE"
+  style="position: absolute; top: 10px; right: 10px;"
+>
+  <button class="btn btn-sm btn-danger">
+    <i class="bi bi-trash"></i>
+  </button>
+</form>
+<br>
+                  <h6 class="card-title mb-2">Jana Doe</h6>
+                  
+                  <p class="card-text mb-2"><%= review.comment %></p>
+
+                  <!-- ⭐ ICON STARS -->
+                  <div class="d-flex justify-content-between align-items-center">
+                    <p class="text-warning fs-5 mb-0">
+                      <% for(let i=1; i<=5; i++) { %>
+                        <% if(i <= review.rating) { %>
+                          <i class="bi bi-star-fill"></i>
+                        <% } else { %>
+                          <i class="bi bi-star"></i>
+                        <% } %>
+                      <% } %>
+                    </p>
+
+                    <span class="badge bg-warning text-dark px-2 py-1">
+                      <%= review.rating %>/5
+                    </span>
+                  </div>
+                    
+                </div>
+
+              </div>
+            </div>
+
+          <% } %>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+</div>
