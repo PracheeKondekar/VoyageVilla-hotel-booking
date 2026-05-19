@@ -250,7 +250,7 @@ app.use("/", userRouter);
 // ================= ROOT ROUTE =================
 
 app.get("/", (req, res) => {
-  res.send("🌍 VoyageVilla is working successfully!");
+  res.redirect("/listings");
 });
 
 // ================= 404 HANDLER =================
