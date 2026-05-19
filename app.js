@@ -205,18 +205,29 @@ store.on("error", (err) => {
 });
 
 // ================= SESSION CONFIG =================
-
 const sessionOptions = {
-  store,
+  store: store,
   secret: process.env.SECRET_KEY,
   resave: false,
-  saveUninitialized: true,
+  saveUninitialized: false,
   cookie: {
     expires: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000),
     maxAge: 7 * 24 * 60 * 60 * 1000,
     httpOnly: true,
+    secure: false,
   },
 };
+// const sessionOptions = {
+//   store,
+//   secret: process.env.SECRET_KEY,
+//   resave: false,
+//   saveUninitialized: true,
+//   cookie: {
+//     expires: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000),
+//     maxAge: 7 * 24 * 60 * 60 * 1000,
+//     httpOnly: true,
+//   },
+// };
 
 app.use(session(sessionOptions));
 app.use(flash());
