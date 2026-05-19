@@ -35,14 +35,17 @@
 
         <!-- Details -->
         <div class="card-body p-0">
-          <p class="mb-2"><%= listing.description %></p>
-          <p class="mb-2">&#8377; <%= listing.price.toLocaleString("en-IN") %> / per night</p>
-          <p class="mb-1"><%= listing.location %></p>
-          <p class="mb-1"><%= listing.country %></p>
-        </div>
+           <p class="card-text"><%= listing.owner.username %></p>
+          <p class="card-text"><%= listing.description %></p>
+          <p class="card-text">&#8377; <%= listing.price.toLocaleString("en-IN") %> / per night</p>
+          <p class="card-text"><%= listing.location %></p>
+          </div>
 
         <!-- Buttons -->
-        <div class="d-flex gap-3 mt-3">
+         <% if (currentUser && listing.owner._id.equals(currentUser._id)) { %>
+          
+        
+            <div class="d-flex gap-3 mt-3"> 
           <a href="/listings/<%= listing._id %>/edit" class="btn btn-warning">Edit</a>
 
           <form method="POST" action="/listings/<%= listing._id %>?_method=DELETE">
@@ -51,14 +54,16 @@
         </div>
 
       </div>
+      <% } %>
 
       <hr>
 
       <!-- Review Form -->
+       <% if(currentUser) { %>
       <div class="mt-4">
         <h4 class="mb-3">Leave a Comment</h4>
 
-        <form action="/listings/<%= listing._id %>/review" method="POST" novalidate class="needs-validation">
+        <form action="/listings/<%= listing._id %>/reviews" method="POST" novalidate class="needs-validation">
 
           <!-- ⭐ Star Rating Input -->
           <div class="mb-3">
@@ -71,7 +76,7 @@
               <% } %>
             </div>
           </div>
-
+         
           <!-- Comment -->
           <div class="mb-3 mt-3">
             <label class="form-label" for="comment">Comments</label>
@@ -82,7 +87,8 @@
         </form>
 
         <hr />
-
+      </div>
+      <% } %>
         <!-- Reviews -->
         <h4 class="mb-3"><b>Reviews</b></h4>
 
@@ -103,7 +109,7 @@
   </button>
 </form>
 <br>
-                  <h6 class="card-title mb-2">Jana Doe</h6>
+                  <h6 class="card-title mb-2">@<%= review.author.username %></h6>
                   
                   <p class="card-text mb-2"><%= review.comment %></p>
 

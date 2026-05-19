@@ -13,11 +13,13 @@ const ListingSchema = new Schema({
   },
 
   image: {
-    url: {
-      type: String,
-      required: true,
-      default: "https://via.placeholder.com/800x600?text=No+Image+Available"
-    }
+    // url: {
+    //   type: String,
+    //   required: true,
+    //   default: "https://via.placeholder.com/800x600?text=No+Image+Available"
+    // }
+    url: String,
+     filename: String
   },
 
   price: {
@@ -40,6 +42,11 @@ const ListingSchema = new Schema({
       ref: "Review",
     },
   ],
+  owner: {
+    type: Schema.Types.ObjectId,
+    ref: "User",
+    required: true,
+  }
 });
 ListingSchema.post("findOneAndDelete", async (listing) => {
   if (listing) {
